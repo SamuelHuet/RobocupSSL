@@ -1,0 +1,183 @@
+/* ###################################################################
+ **     Filename    : main.c
+ **     Project     : IHM
+ **     Processor   : MC9S08QE8CLC
+ **     Version     : Driver 01.12
+ **     Compiler    : CodeWarrior HCS08 C Compiler
+ **     Date/Time   : 2018-05-29, 11:18, # CodeGen: 0
+ **     Abstract    :
+ **         Main module.
+ **         This module contains user's application code.
+ **     Settings    :
+ **     Contents    :
+ **         No public methods
+ **
+ ** ###################################################################*/
+/*!
+ ** @file main.c
+ ** @version 01.12
+ ** @brief
+ **         Main module.
+ **         This module contains user's application code.
+ */         
+/*!
+ **  @addtogroup main_module main module documentation
+ **  @{
+ */         
+/* MODULE main */
+
+
+/* Including needed modules to compile this module/procedure */
+#include "Cpu.h"
+#include "Events.h"
+#include "SCI.h"
+#include "SPI.h"
+/* Include shared modules, which are used for whole project */
+#include "PE_Types.h"
+#include "PE_Error.h"
+#include "PE_Const.h"
+#include "IO_Map.h"
+#include "bsp.h"
+#include "IHM.h"
+#include "nrf24.h"
+
+
+/* User includes (#include below this line is not maintained by Processor Expert) */
+unsigned char key = ' ';
+unsigned char repeat =0;
+unsigned char data_dir[4]={0x7F, 0x7F, 0x00, 0xFF}; //x, y, kik/sol, checksum
+
+void main(void)
+{
+	/* Write your local variable definition here */
+
+	unsigned char dec[3]={0,0,0};
+	unsigned short i = 0;
+	unsigned char data_array[4] = {0,0,0,0};
+	unsigned char tx_address[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
+	unsigned char rx_address[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
+
+
+
+	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
+	PE_low_level_init();
+	/*** End of Processor Expert internal initialization.                    ***/
+
+	/* Write your code here */
+	nrf24_init();
+	nrf24_config(2,4);
+	nrf24_tx_address(tx_address);
+	nrf24_rx_address(rx_address); 
+
+	clear_screen();
+	draw_ihm();
+
+	for(;;){
+
+		nrf24_powerUpRx();
+		//for (i = 0; i < 500; ++i) {}
+
+		for (i = 0; i < 4; ++i) {
+			data_array[i]=0;
+		}
+
+		/*if(nrf24_dataReady()){
+			nrf24_getData(data_array);	
+		}*/
+		
+		i=0;
+		while ( (!nrf24_dataReady()) && (i<100)){
+			i++;
+		}
+		nrf24_getData(data_array);
+
+
+
+
+
+		convert(((data_array[0] * 100)/255), dec);
+		draw_number(15, 4, dec);
+
+
+		status_RF(data_array, 3);
+
+		//-----------------------------------------------------
+
+
+		if(SCIS1_RDRF){
+			key = SCID;
+			repeat = 0;
+		}
+		if(repeat){
+			key = ' ';
+		}
+		
+		move(14, 21);
+		putc(key);
+		repeat = 0;
+
+		//-----------------------------------------------------
+
+		switch (key) {
+		case 0x7A: //z
+			data_dir[0]=0xFF;
+			break;
+		case 0x73: //s
+			data_dir[0]=0x00;
+			break;
+		case 0x71: //q
+			data_dir[1]=0x00;
+			break;
+		case 0x64: //d
+			data_dir[1]=0xFF;
+			break;
+		case 0x6B: //k
+			data_dir[2]=data_dir[2]|0x01;
+			break;
+		case 0x6D: //m
+			data_dir[2]=data_dir[2]|0x02;
+			break;
+		default:
+			break;
+		}
+
+		nrf24_powerUpTx();
+		//for (i = 0; i < 500; ++i) {}
+
+		
+		nrf24_send(data_dir);
+		while(nrf24_isSending());
+		//--------------------------------------------
+		
+		data_dir[0]=0x7F;
+		data_dir[1]=0x7F;
+		data_dir[3]=0x00;
+		data_dir[4]=0xFF;
+
+
+
+
+	}
+	/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
+	/*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
+#ifdef PEX_RTOS_START
+	PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
+#endif
+	/*** End of RTOS startup code.  ***/
+  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+  for(;;){}
+  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+} /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
+
+/* END main */
+/*!
+ ** @}
+ */
+/*
+ ** ###################################################################
+ **
+ **     This file was created by Processor Expert 10.3 [05.09]
+ **     for the Freescale HCS08 series of microcontrollers.
+ **
+ ** ###################################################################
+ */

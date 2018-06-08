@@ -148,6 +148,9 @@ fgrtfjfffhvoid main(void)
 
 		//nrf24_send(data_dir);					//Envois du tableau
 		//while(nrf24_isSending());				//Attente de l'envois
+		/*nrf24_powerUpRx();
+			
+			for(i=0;i<2000;i++);*/
 		//--------------------------------------------
 
 		data_dir[0]=0x7F;						//RaZ du tableau d'envois

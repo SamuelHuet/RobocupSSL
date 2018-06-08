@@ -1,0 +1,10 @@
+ERROR L1818: Symbol 15 - touche duplicated in main_c.obj and IHM_c.obj
+ERROR L1818: Symbol 16 - help1 duplicated in main_c.obj and IHM_c.obj
+ERROR L1818: Symbol 17 - help2 duplicated in main_c.obj and IHM_c.obj
+ERROR L1818: Symbol 18 - batterie duplicated in main_c.obj and IHM_c.obj
+ERROR L1818: Symbol 19 - dx duplicated in main_c.obj and IHM_c.obj
+ERROR L1818: Symbol 20 - dy duplicated in main_c.obj and IHM_c.obj
+ERROR L1818: Symbol 21 - Rotation duplicated in main_c.obj and IHM_c.obj
+ERROR L1818: Symbol 22 - vitesse duplicated in main_c.obj and IHM_c.obj
+ERROR L1818: Symbol 23 - status_rf duplicated in main_c.obj and IHM_c.obj
+ERROR L1301: Cannot open file D:/Windows/Documents/WorkSpace_CW/IHM/FLASH/Sources/main_c.obj

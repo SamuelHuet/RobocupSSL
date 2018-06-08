@@ -1,0 +1,35 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2018-05-30, 15:47:20" FileAge="1527688040134" FileType="8" CompNumb="4" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2018-05-30, 15:47:20" FileAge="1527688040052" FileType="45637" />
+      <File Name="Documentation/IHM.txt" FileDate="2018-05-30, 15:48:39" FileAge="1527688119103" FileType="3072" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2018-05-30, 15:47:20" FileAge="1527688040061" FileType="45637" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2018-05-30, 15:47:20" FileAge="1527688040042" FileType="45637" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2018-05-30, 15:47:20" FileAge="1527688040074" FileType="45637" />
+      <File Name="Sources/main.c" FileDate="2018-06-05, 09:53:33" FileAge="1528185213202" FileType="128" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2018-05-30, 15:47:20" FileAge="1527688040024" FileType="45637" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-05-30, 15:47:20" FileAge="1527688040121" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-05-30, 15:48:39" FileAge="1527688119008" FileType="45637" CompNumb="4" />
+      <File Name="Sources/Events.h" FileDate="2018-05-30, 15:48:39" FileAge="1527688119024" FileType="131328" />
+      <File Name="Generated_Code/SPI.h" FileDate="2018-05-30, 15:48:38" FileAge="1527688118970" FileType="45637" CompNumb="15" />
+      <File Name="Generated_Code/SCI.h" FileDate="2018-06-01, 14:37:41" FileAge="1527856661525" FileType="45637" CompNumb="8" />
+      <File Name="Sources/Events.c" FileDate="2018-05-30, 15:47:20" FileAge="1527688040151" FileType="131328" />
+      <File Name="Generated_Code/SPI.c" FileDate="2018-05-30, 15:48:38" FileAge="1527688118966" FileType="45637" CompNumb="15" />
+      <File Name="Documentation/IHM_SIGNALS.txt" FileDate="2018-06-05, 09:53:33" FileAge="1528185213255" FileType="3072" />
+      <File Name="Generated_Code/SCI.c" FileDate="2018-06-01, 14:37:41" FileAge="1527856661537" FileType="45637" CompNumb="8" />
+      <File Name="Documentation/IHM_Settings.xml" FileDate="2018-06-01, 14:37:42" FileAge="1527856662565" FileType="3072" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2018-06-01, 14:37:42" FileAge="1527856662176" FileType="45637" CompNumb="4" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>42</CodeGenReference>
+</CodeGenerationInfo>
