@@ -7,6 +7,7 @@
 -Add("$(ProjDirPath)/FLASH/Sources/Dribleur_c.obj"
 "$(ProjDirPath)/FLASH/Sources/Events_c.obj"
 "$(ProjDirPath)/FLASH/Sources/graph_c.obj"
+"$(ProjDirPath)/FLASH/Sources/kicker_c.obj"
 "$(ProjDirPath)/FLASH/Sources/main_c.obj"
 "$(ProjDirPath)/FLASH/Sources/nrf24_c.obj"
 "$(ProjDirPath)/FLASH/Sources/radioPinFunctions_c.obj"
