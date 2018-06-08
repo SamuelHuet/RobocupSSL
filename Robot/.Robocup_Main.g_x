@@ -1,0 +1,31 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Generated_Code/Vectors.c" FileDate="2018-06-07, 14:59:14" FileAge="1528376354551" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2018-06-07, 14:59:14" FileAge="1528376354590" FileType="45637" />
+      <File Name="Documentation/Robocup_Main.txt" FileDate="2018-06-07, 14:59:14" FileAge="1528376354622" FileType="3072" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-06-07, 14:59:14" FileAge="1528376354566" FileType="45637" CompNumb="4" />
+      <File Name="Sources/main.c" FileDate="2018-06-07, 14:59:08" FileAge="1528376348062" FileType="128" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-06-07, 14:59:14" FileAge="1528376354564" FileType="45637" CompNumb="4" />
+      <File Name="Documentation/Robocup_Main_Settings.xml" FileDate="2018-06-07, 14:59:14" FileAge="1528376354614" FileType="3072" />
+      <File Name="Sources/Events.h" FileDate="2018-06-07, 13:03:53" FileAge="1528369433408" FileType="131328" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2018-06-07, 14:59:14" FileAge="1528376354581" FileType="45637" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2018-06-07, 14:59:14" FileAge="1528376354579" FileType="45637" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2018-06-07, 14:59:14" FileAge="1528376354584" FileType="45637" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2018-06-07, 14:59:14" FileAge="1528376354559" FileType="8" CompNumb="4" />
+      <File Name="Documentation/Robocup_Main_SIGNALS.txt" FileDate="2018-06-07, 14:59:14" FileAge="1528376354595" FileType="3072" />
+      <File Name="Sources/Events.c" FileDate="2018-06-07, 13:03:53" FileAge="1528369433404" FileType="131328" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2018-06-07, 14:59:14" FileAge="1528376354572" FileType="45637" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>1</CodeGenReference>
+</CodeGenerationInfo>

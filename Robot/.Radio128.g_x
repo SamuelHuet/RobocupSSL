@@ -1,0 +1,31 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Generated_Code/IO_Map.h" FileDate="2018-06-07, 15:18:11" FileAge="1528377491954" FileType="45637" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2018-06-07, 15:18:11" FileAge="1528377491934" FileType="45637" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2018-06-07, 15:18:11" FileAge="1528377491970" FileType="45637" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-06-07, 15:18:11" FileAge="1528377491892" FileType="45637" CompNumb="4" />
+      <File Name="Sources/Events.h" FileDate="2018-06-07, 15:18:12" FileAge="1528377492028" FileType="131328" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-06-07, 15:18:11" FileAge="1528377491868" FileType="45637" CompNumb="4" />
+      <File Name="Documentation/Radio128_SIGNALS.txt" FileDate="2018-06-07, 15:18:12" FileAge="1528377492407" FileType="3072" />
+      <File Name="Documentation/Radio128_Settings.xml" FileDate="2018-06-07, 15:18:12" FileAge="1528377492485" FileType="3072" />
+      <File Name="Sources/Events.c" FileDate="2018-05-30, 13:45:14" FileAge="1527680714928" FileType="131328" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2018-06-07, 15:18:11" FileAge="1528377491985" FileType="45637" />
+      <File Name="Documentation/Radio128.txt" FileDate="2018-06-07, 15:18:12" FileAge="1528377492500" FileType="3072" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2018-06-07, 15:18:11" FileAge="1528377491963" FileType="45637" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2018-06-07, 15:18:11" FileAge="1528377491851" FileType="45637" CompNumb="4" />
+      <File Name="Sources/main.c" FileDate="2018-06-07, 15:18:11" FileAge="1528377491996" FileType="128" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2018-06-07, 15:18:12" FileAge="1528377492012" FileType="8" CompNumb="4" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>21</CodeGenReference>
+</CodeGenerationInfo>
