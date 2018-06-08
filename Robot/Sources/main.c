@@ -38,6 +38,7 @@
 #include "nrf24.h"
 #include "graph.h"
 #include "Dribleur.h"
+#include "Kicker.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
 void main(void)

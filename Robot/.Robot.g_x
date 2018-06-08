@@ -1,0 +1,31 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Generated_Code/PE_Const.h" FileDate="2018-06-08, 15:06:23" FileAge="1528463183120" FileType="45637" />
+      <File Name="Sources/main.c" FileDate="2018-06-08, 14:49:24" FileAge="1528462164123" FileType="128" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2018-06-08, 15:06:23" FileAge="1528463183097" FileType="8" CompNumb="4" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2018-06-08, 15:06:23" FileAge="1528463183118" FileType="45637" />
+      <File Name="Documentation/Robot_SIGNALS.txt" FileDate="2018-06-08, 15:06:23" FileAge="1528463183135" FileType="3072" />
+      <File Name="Documentation/Robot.txt" FileDate="2018-06-08, 15:06:23" FileAge="1528463183158" FileType="3072" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2018-06-08, 15:06:23" FileAge="1528463183123" FileType="45637" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2018-06-08, 15:06:23" FileAge="1528463183106" FileType="45637" CompNumb="4" />
+      <File Name="Sources/Events.h" FileDate="2018-06-08, 14:48:06" FileAge="1528462086672" FileType="131328" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2018-06-08, 15:06:23" FileAge="1528463183112" FileType="45637" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2018-06-08, 15:06:23" FileAge="1528463183128" FileType="45637" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2018-06-08, 15:06:23" FileAge="1528463183089" FileType="45637" CompNumb="4" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2018-06-08, 15:06:23" FileAge="1528463183103" FileType="45637" CompNumb="4" />
+      <File Name="Documentation/Robot_Settings.xml" FileDate="2018-06-08, 15:06:23" FileAge="1528463183152" FileType="3072" />
+      <File Name="Sources/Events.c" FileDate="2018-06-08, 14:48:06" FileAge="1528462086671" FileType="131328" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>1</CodeGenReference>
+</CodeGenerationInfo>
