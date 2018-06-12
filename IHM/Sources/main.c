@@ -49,7 +49,7 @@ unsigned char tx_address[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
 unsigned char rx_address[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
-fgrtfjfffhvoid main(void)
+void main(void)
 {
 	/* Write your local variable definition here */
 
