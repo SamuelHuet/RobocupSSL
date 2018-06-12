@@ -10,7 +10,7 @@
 
 void Init_Kick(void);
 void Kick_Charge (void);
-void Kick_ON(unsigned char k);
+void Kick_ON(unsigned char *k);
 void delay_1ms (void);
 
 #endif /* KICKER_H_ */
