@@ -51,7 +51,7 @@ void main(void)
 	unsigned char rx_address[5] = {0xD7, 0xD7, 0xD7, 0xD7, 0xD7};
 	unsigned long i;
 	unsigned char pwm = 1;
-
+	unsigned char tir = 1;
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
 	PE_low_level_init();
 	/*** End of Processor Expert internal initialization.                    ***/
@@ -64,6 +64,7 @@ void main(void)
 	};
 	init_PWM();
 	init_ADC();
+	Init_Kick();
 	nrf24_init();
 	nrf24_config(2, 4);
 	PTEDD_PTEDD5=1;
@@ -77,6 +78,8 @@ void main(void)
 		nrf24_send(data_array);
 		while(nrf24_isSending());
 		On_Dribleur(pwm);
+		Kick_Charge();
+		Kick_ON(tir);
 		
 
 
