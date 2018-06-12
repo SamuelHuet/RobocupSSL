@@ -9,7 +9,7 @@
 #include "graph.h"
 
 #define Adc_feedback 0x0A 
-#define Charge_done 0x		/* calculer la valeur pour 150V 135mv */
+#define Charge_done 0x		/* calculer la valeur pour 150V =>135mv sur le feedback */
 
 
 void Init_Kick(void){
@@ -30,13 +30,16 @@ void Kick_Charge (void){
 }
 
 void Kick_ON(unsigned char k){
-	if(k==0){				/* Si l'ordre de tirer est donné */ 
-		PTBD_PTBD0=0;		/* Désactive la charge pour pouvoir tirer */ 
-		PTBD_PTBD1=0;		/* Kick on */
-		/*delay*/
-		PTBD_PTBD1=1;		/* KIck off */
+	unsigned char i=0;
+	if(k==0){						/* Si l'ordre de tirer est donné */ 
+		PTBD_PTBD0=0;				/* Désactive la charge pour pouvoir tirer */ 
+		PTBD_PTBD1=0;				/* Kick on */
+		for(i=0; i<=50; i++){		/* Delay de 50ms temps de tir */
+			delay_1ms();
+		}
+		PTBD_PTBD1=1;				/* KIck off */
 	}
-	else{					/* Sinon */
+	else{							/* Sinon */
 		PTBD_PTBD1=1;		
 	}
 }

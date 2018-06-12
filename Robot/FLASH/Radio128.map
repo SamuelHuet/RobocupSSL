@@ -14,6 +14,7 @@ FILE SECTION
 ---------------------------------------------------------------------------------------------
 Dribleur_c.obj                          Model: SMALL,         Lang: ANSI-C
 graph_c.obj                             Model: SMALL,         Lang: ANSI-C
+kicker_c.obj                            Model: SMALL,         Lang: ANSI-C
 main_c.obj                              Model: SMALL,         Lang: ANSI-C
 nrf24_c.obj                             Model: SMALL,         Lang: ANSI-C
 radioPinFunctions_c.obj                 Model: SMALL,         Lang: ANSI-C
@@ -31,14 +32,14 @@ _startupData is allocated at 0x211A and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
   _Range   pZeroOut       0xA0     3
-  _Copy    *toCopyDownBeg 0x25A1
+  _Copy    *toCopyDownBeg 0x2605
 } _startupData;
 
 *********************************************************************************************
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.text                           1141     R     0x212C     0x25A0   ROM
+.text                           1241     R     0x212C     0x2604   ROM
 .abs_section_ffbd                  1     R     0xFFBD     0xFFBD   .absSeg0
 .abs_section_ffbf                  1     R     0xFFBF     0xFFBF   .absSeg1
 .abs_section_0                     1   N/I        0x0        0x0   .absSeg2
@@ -226,10 +227,10 @@ Section Name                    Size  Type     From       To       Segment
 .init                            154     R     0x2080     0x2119   ROM
 .common                            3   R/W       0xA0       0xA2   RAM
 .stack                           512   R/W       0xA3      0x2A2   RAM
-.copy                              2     R     0x25A1     0x25A2   ROM
+.copy                              2     R     0x2605     0x2606   ROM
 
 Summary of section sizes per section type:
-READ_ONLY (R):         565 (dec:     1381)
+READ_ONLY (R):         5C9 (dec:     1481)
 READ_WRITE (R/W):      203 (dec:      515)
 NO_INIT (N/I):          CF (dec:      207)
 
@@ -249,40 +250,47 @@ MODULE:                 -- Dribleur_c.obj --
 - VARIABLES:
 MODULE:                 -- graph_c.obj --
 - PROCEDURES:
-     Get_ADC                                   214B      1A      26       1   .text       
+     Get_ADC                                   214B      1A      26       2   .text       
      Draw_battery                              2165      5C      92       1   .text       
      init_ADC                                  21C1       8       8       1   .text       
 - VARIABLES:
+MODULE:                 -- kicker_c.obj --
+- PROCEDURES:
+     Init_Kick                                 21C9       9       9       1   .text       
+     Kick_Charge                               21D2      16      22       1   .text       
+     Kick_ON                                   21E8      26      38       1   .text       
+     delay_1ms                                 220E      10      16       1   .text       
+- VARIABLES:
 MODULE:                 -- main_c.obj --
 - PROCEDURES:
-     main                                      21C9      BE     190       1   .text       
+     main                                      221E      CD     205       1   .text       
 - VARIABLES:
 MODULE:                 -- nrf24_c.obj --
 - PROCEDURES:
-     nrf24_init                                2287       D      13       1   .text       
-     nrf24_config                              2294      5F      95       1   .text       
-     nrf24_send                                22F3      3C      60       1   .text       
-     nrf24_isSending                           232F      13      19       1   .text       
-     nrf24_getStatus                           2342      19      25       1   .text       
-     nrf24_powerUpRx                           235B      28      40       1   .text       
-     nrf24_powerUpTx                           2383       E      14       1   .text       
-     spi_transfer                              2391      39      57       7   .text       
-     nrf24_transmitSync                        23CA      34      52       1   .text       
-     nrf24_configRegister                      23FE      24      36      17   .text       
+     nrf24_init                                22EB       D      13       1   .text       
+     nrf24_config                              22F8      5F      95       1   .text       
+     nrf24_send                                2357      3C      60       1   .text       
+     nrf24_isSending                           2393      13      19       1   .text       
+     nrf24_getStatus                           23A6      19      25       1   .text       
+     nrf24_powerUpRx                           23BF      28      40       1   .text       
+     nrf24_powerUpTx                           23E7       E      14       1   .text       
+     spi_transfer                              23F5      39      57       7   .text       
+     nrf24_transmitSync                        242E      34      52       1   .text       
+     nrf24_configRegister                      2462      24      36      17   .text       
 - VARIABLES:
      payload_len                                 A0       1       1       3   .common     
      dummy                                       A1       1       1       6   .common     
 MODULE:                 -- radioPinFunctions_c.obj --
 - PROCEDURES:
-     nrf24_setupPins                           2422      16      22       1   .text       
-     nrf24_ce_digitalWrite                     2438       A      10       5   .text       
-     nrf24_csn_digitalWrite                    2442       A      10      11   .text       
+     nrf24_setupPins                           2486      16      22       1   .text       
+     nrf24_ce_digitalWrite                     249C       A      10       5   .text       
+     nrf24_csn_digitalWrite                    24A6       A      10      11   .text       
 - VARIABLES:
 MODULE:                 -- start08_c.obj --
 - PROCEDURES:
-     loadByte                                  244C       E      14       5   .text       
-     Init                                      245A      71     113       1   .text       
-     _Startup                                  24CB       9       9       1   .text       
+     loadByte                                  24B0       E      14       5   .text       
+     Init                                      24BE      71     113       1   .text       
+     _Startup                                  252F       9       9       1   .text       
 - VARIABLES:
      _startupData                              211A       6       6       4   .startData  
 - LABELS:
@@ -301,8 +309,8 @@ MODULE:                 -- IO_Map_c.obj --
 - VARIABLES:
      _PTAD                                        0       1       1       0   .abs_section_0
      _PTADD                                       1       1       1       0   .abs_section_1
-     _PTBD                                        2       1       1       0   .abs_section_2
-     _PTBDD                                       3       1       1       0   .abs_section_3
+     _PTBD                                        2       1       1       7   .abs_section_2
+     _PTBDD                                       3       1       1       2   .abs_section_3
      _PTCD                                        4       1       1       2   .abs_section_4
      _PTCDD                                       5       1       1       1   .abs_section_5
      _PTDD                                        6       1       1       0   .abs_section_6
@@ -485,14 +493,14 @@ MODULE:                 -- Vectors_c.obj --
      _vect                                     FFC0      40      64       0   .abs_section_ffc0
 MODULE:                 -- rtshc08.o (ansiis.lib) --
 - PROCEDURES:
-     _PUSH_ARGS_L                              24D4      20      32       1   .text       
-     _ENTER_UNARY_L                            24F4      29      41       1   .text       
-     _ENTER_BINARY_L_RC                        251D      19      25       1   .text       
-     _LCMP_k_rel_j                             2536      1F      31       1   .text       
-     _ICMP                                     2555      16      22       1   .text       
-     _LINC                                     256B      16      22       2   .text       
-     _LCMP_RC                                  2581       6       6       2   .text       
-     _POP32                                    2587      1A      26       2   .text       
+     _PUSH_ARGS_L                              2538      20      32       1   .text       
+     _ENTER_UNARY_L                            2558      29      41       1   .text       
+     _ENTER_BINARY_L_RC                        2581      19      25       1   .text       
+     _LCMP_k_rel_j                             259A      1F      31       1   .text       
+     _ICMP                                     25B9      16      22       1   .text       
+     _LINC                                     25CF      16      22       2   .text       
+     _LCMP_RC                                  25E5       6       6       2   .text       
+     _POP32                                    25EB      1A      26       2   .text       
 - VARIABLES:
 
 *********************************************************************************************
@@ -501,7 +509,8 @@ MODULE STATISTIC
 ---------------------------------------------------------------------------------------------
   Dribleur_c.obj                               0     31      0
   graph_c.obj                                  0    126      0
-  main_c.obj                                   0    190      0
+  kicker_c.obj                                 0     85      0
+  main_c.obj                                   0    205      0
   nrf24_c.obj                                  2    411      0
   radioPinFunctions_c.obj                      0     42      0
   start08_c.obj                                0    136      0
@@ -515,12 +524,12 @@ MODULE STATISTIC
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  init_PWM On_Dribleur Get_ADC Draw_battery init_ADC main nrf24_init 
-  nrf24_config nrf24_send nrf24_isSending nrf24_getStatus nrf24_powerUpRx 
-  nrf24_powerUpTx spi_transfer nrf24_transmitSync nrf24_configRegister 
-  nrf24_setupPins nrf24_ce_digitalWrite nrf24_csn_digitalWrite loadByte Init 
-  _Startup _PUSH_ARGS_L _ENTER_UNARY_L _ENTER_BINARY_L_RC _LCMP_k_rel_j _ICMP 
-  _LINC _LCMP_RC _POP32 
+  init_PWM On_Dribleur Get_ADC Draw_battery init_ADC Init_Kick Kick_Charge 
+  Kick_ON delay_1ms main nrf24_init nrf24_config nrf24_send nrf24_isSending 
+  nrf24_getStatus nrf24_powerUpRx nrf24_powerUpTx spi_transfer 
+  nrf24_transmitSync nrf24_configRegister nrf24_setupPins nrf24_ce_digitalWrite 
+  nrf24_csn_digitalWrite loadByte Init _Startup _PUSH_ARGS_L _ENTER_UNARY_L 
+  _ENTER_BINARY_L_RC _LCMP_k_rel_j _ICMP _LINC _LCMP_RC _POP32 
 SECTION: ".init"
   Cpu_Interrupt _EntryPoint PE_low_level_init 
 SECTION: ".common"
@@ -898,8 +907,8 @@ OBJECT LIST SORTED BY ADDRESS
 ---------------------------------------------------------------------------------------------
      _PTAD                                        0       1       1       0   .abs_section_0
      _PTADD                                       1       1       1       0   .abs_section_1
-     _PTBD                                        2       1       1       0   .abs_section_2
-     _PTBDD                                       3       1       1       0   .abs_section_3
+     _PTBD                                        2       1       1       7   .abs_section_2
+     _PTBDD                                       3       1       1       2   .abs_section_3
      _PTCD                                        4       1       1       2   .abs_section_4
      _PTCDD                                       5       1       1       1   .abs_section_5
      _PTDD                                        6       1       1       0   .abs_section_6
@@ -1084,34 +1093,38 @@ OBJECT LIST SORTED BY ADDRESS
      PE_low_level_init                         20CC      4E      78       1   .init       
      init_PWM                                  212C       F      15       1   .text       
      On_Dribleur                               213B      10      16       1   .text       
-     Get_ADC                                   214B      1A      26       1   .text       
+     Get_ADC                                   214B      1A      26       2   .text       
      Draw_battery                              2165      5C      92       1   .text       
      init_ADC                                  21C1       8       8       1   .text       
-     main                                      21C9      BE     190       1   .text       
-     nrf24_init                                2287       D      13       1   .text       
-     nrf24_config                              2294      5F      95       1   .text       
-     nrf24_send                                22F3      3C      60       1   .text       
-     nrf24_isSending                           232F      13      19       1   .text       
-     nrf24_getStatus                           2342      19      25       1   .text       
-     nrf24_powerUpRx                           235B      28      40       1   .text       
-     nrf24_powerUpTx                           2383       E      14       1   .text       
-     spi_transfer                              2391      39      57       7   .text       
-     nrf24_transmitSync                        23CA      34      52       1   .text       
-     nrf24_configRegister                      23FE      24      36      17   .text       
-     nrf24_setupPins                           2422      16      22       1   .text       
-     nrf24_ce_digitalWrite                     2438       A      10       5   .text       
-     nrf24_csn_digitalWrite                    2442       A      10      11   .text       
-     loadByte                                  244C       E      14       5   .text       
-     Init                                      245A      71     113       1   .text       
-     _Startup                                  24CB       9       9       1   .text       
-     _PUSH_ARGS_L                              24D4      20      32       1   .text       
-     _ENTER_UNARY_L                            24F4      29      41       1   .text       
-     _ENTER_BINARY_L_RC                        251D      19      25       1   .text       
-     _LCMP_k_rel_j                             2536      1F      31       1   .text       
-     _ICMP                                     2555      16      22       1   .text       
-     _LINC                                     256B      16      22       2   .text       
-     _LCMP_RC                                  2581       6       6       2   .text       
-     _POP32                                    2587      1A      26       2   .text       
+     Init_Kick                                 21C9       9       9       1   .text       
+     Kick_Charge                               21D2      16      22       1   .text       
+     Kick_ON                                   21E8      26      38       1   .text       
+     delay_1ms                                 220E      10      16       1   .text       
+     main                                      221E      CD     205       1   .text       
+     nrf24_init                                22EB       D      13       1   .text       
+     nrf24_config                              22F8      5F      95       1   .text       
+     nrf24_send                                2357      3C      60       1   .text       
+     nrf24_isSending                           2393      13      19       1   .text       
+     nrf24_getStatus                           23A6      19      25       1   .text       
+     nrf24_powerUpRx                           23BF      28      40       1   .text       
+     nrf24_powerUpTx                           23E7       E      14       1   .text       
+     spi_transfer                              23F5      39      57       7   .text       
+     nrf24_transmitSync                        242E      34      52       1   .text       
+     nrf24_configRegister                      2462      24      36      17   .text       
+     nrf24_setupPins                           2486      16      22       1   .text       
+     nrf24_ce_digitalWrite                     249C       A      10       5   .text       
+     nrf24_csn_digitalWrite                    24A6       A      10      11   .text       
+     loadByte                                  24B0       E      14       5   .text       
+     Init                                      24BE      71     113       1   .text       
+     _Startup                                  252F       9       9       1   .text       
+     _PUSH_ARGS_L                              2538      20      32       1   .text       
+     _ENTER_UNARY_L                            2558      29      41       1   .text       
+     _ENTER_BINARY_L_RC                        2581      19      25       1   .text       
+     _LCMP_k_rel_j                             259A      1F      31       1   .text       
+     _ICMP                                     25B9      16      22       1   .text       
+     _LINC                                     25CF      16      22       2   .text       
+     _LCMP_RC                                  25E5       6       6       2   .text       
+     _POP32                                    25EB      1A      26       2   .text       
      NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
      NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
      _vect                                     FFC0      40      64       0   .abs_section_ffc0
@@ -1153,7 +1166,7 @@ rtshc08.o (ansiis.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0x25A1 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x2605 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1171,10 +1184,13 @@ On_Dribleur               USES _TPM3C4V
 Get_ADC                   USES _ADCSC1 _ADCR 
 Draw_battery              USES _PTHDD _PTHD 
 init_ADC                  USES _ADCSC2 _ADCCFG _ADCSC1 
+Init_Kick                 USES _PTBDD _PTBD 
+Kick_Charge               USES Get_ADC _PTBD 
+Kick_ON                   USES _PTBD delay_1ms 
 main                      USES PE_low_level_init _LINC _POP32 _LCMP_RC 
-                                init_PWM init_ADC nrf24_init nrf24_config _PTEDD 
-                                Get_ADC Draw_battery nrf24_send nrf24_isSending 
-                                On_Dribleur 
+                                init_PWM init_ADC Init_Kick nrf24_init nrf24_config 
+                                _PTEDD Get_ADC Draw_battery nrf24_send 
+                                nrf24_isSending On_Dribleur Kick_Charge Kick_ON 
 nrf24_init                USES nrf24_setupPins nrf24_ce_digitalWrite 
                                 nrf24_csn_digitalWrite 
 nrf24_config              USES payload_len nrf24_configRegister 
@@ -1226,6 +1242,8 @@ DEPENDENCY TREE
  |  +- init_PWM            
  |  |    
  |  +- init_ADC            
+ |  |    
+ |  +- Init_Kick           
  |  |    
  |  +- nrf24_init          
  |  |  | 
@@ -1284,7 +1302,15 @@ DEPENDENCY TREE
  |  |     +- spi_transfer         (see above)
  |  |        
  |  +- On_Dribleur         
- |       
+ |  |    
+ |  +- Kick_Charge         
+ |  |  | 
+ |  |  +- Get_ADC              (see above)
+ |  |     
+ |  +- Kick_ON             
+ |     | 
+ |     +- delay_1ms           
+ |          
  +- _EntryPoint         
     | 
     +- _Startup            
@@ -1308,5 +1334,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 7
-Total size of all blocks to be downloaded: 1381
+Total size of all blocks to be downloaded: 1481
 
