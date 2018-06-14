@@ -13,8 +13,8 @@ Rapport/
 
 Deux programmes ont été réalisés, un destiné à être intégré sur un serveur, recevant des informations du robot et lui donnant des ordres de déplacement. Le second est destiné à être embarqué sur le robot.
 ```
-IHM
-Robot
+* IHM/
+* Robot/
 ```
 
 ## Participants
