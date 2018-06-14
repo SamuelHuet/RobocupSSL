@@ -43,9 +43,9 @@
 
 static unsigned char key = ' ';
 static unsigned char repeat =0;
-unsigned char data_dir[4]={0x7F, 0x7F, 0x00, 0xFF}; //x, y, kik/sol/rotation, checksum
+unsigned char data_dir[5]={0x7F, 0x7F, 0x00, 0xFF,0x00}; //x, y, kik/sol/rotation, checksum
 unsigned short i = 0;
-unsigned char tx_address[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
+unsigned char tx_address[5] = {0xD7, 0xD7, 0xD7, 0xD7, 0xD7};
 unsigned char rx_address[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
@@ -53,7 +53,7 @@ void main(void)
 {
 	/* Write your local variable definition here */
 
-	unsigned char data_array[4] = {0,0,0,0};
+	unsigned char data_array[4] = {0,0,0,0x00};
 	unsigned char dec[3]={0,0,0};
 
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
@@ -69,24 +69,26 @@ void main(void)
 	clear_screen();					
 	draw_ihm();						
 
-
+	data_dir[0]=0x7F;						//RaZ du tableau d'envois
+	data_dir[1]=0x7F;
+	data_dir[2]=0x00;
+	data_dir[3]=0xFF;
 
 
 	for(;;){
-
-
-
+		
 		nrf24_powerUpRx();			//Mode récéption
 
 
-
+		data_array[3]=0;
 		i=0;
-		while ( (!nrf24_dataReady()) && (i<100)){	//Attente d'une donnée + Timeout
+		while ( (!nrf24_dataReady()) && (i<1000)){	//Attente d'une donnée + Timeout
 			i++;
 		}
-		nrf24_getData(data_array);					//Récupération de la donnée
-
-
+		if (nrf24_dataReady()){
+			nrf24_getData(data_array); //Récupération de la donnée
+		}
+		
 
 
 
@@ -108,10 +110,11 @@ void main(void)
 		}
 
 		move(13, 20);
-		putc(key);									//Affichage
+		putc(key);
+		data_dir[1] = key;//Affichage
 		repeat = 0;
 
-		//----------------------------------------------------- 
+		/*----------------------------------------------------- */
 
 		switch (key) {								//Conversion en donnée x,y,...
 		case 0x7A: //z
@@ -142,21 +145,14 @@ void main(void)
 			break;
 		} 
 
-		//nrf24_powerUpTx();						//Mode Emission
 
-
-
-		//nrf24_send(data_dir);					//Envois du tableau
-		//while(nrf24_isSending());				//Attente de l'envois
+		data_dir[0] ++;
+		nrf24_send(data_dir);					//Envois du tableau
+		while(nrf24_isSending());				//Attente de l'envois
 		/*nrf24_powerUpRx();
-			
+
 			for(i=0;i<2000;i++);*/
 		//--------------------------------------------
-
-		data_dir[0]=0x7F;						//RaZ du tableau d'envois
-		data_dir[1]=0x7F;
-		data_dir[2]=0x00;
-		data_dir[3]=0xFF;
 
 
 
@@ -168,9 +164,9 @@ void main(void)
 	PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
 #endif
 	/*** End of RTOS startup code.  ***/
-  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-  for(;;){}
-  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+	/*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+	for(;;){}
+	/*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
 /* END main */

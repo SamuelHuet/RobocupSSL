@@ -32,17 +32,17 @@ Entry point: 0xE004 (_EntryPoint)
 _startupData is allocated at 0xE08A and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x80     21
-  _Copy    *toCopyDownBeg 0xEB34
+  _Range   pZeroOut       0x80     22
+  _Copy    *toCopyDownBeg 0xEBAB
 } _startupData;
 
 *********************************************************************************************
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.data                             15   R/W       0x80       0x8E   RAM
-.text                           2527     R     0xE098     0xEA76   ROM
-.rodata                          189     R     0xEA77     0xEB33   ROM
+.data                             16   R/W       0x80       0x8F   RAM
+.text                           2646     R     0xE098     0xEAED   ROM
+.rodata                          189     R     0xEAEE     0xEBAA   ROM
 .abs_section_ffbd                  1     R     0xFFBD     0xFFBD   .absSeg0
 .abs_section_ffbf                  1     R     0xFFBF     0xFFBF   .absSeg1
 .abs_section_0                     1   N/I        0x0        0x0   .absSeg2
@@ -149,16 +149,16 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_1814                  2   N/I     0x1814     0x1815   .absSeg103
 .abs_section_1816                  2   N/I     0x1816     0x1817   .absSeg104
 .abs_section_ffce                 50     R     0xFFCE     0xFFFF   .absSeg105
-.bss                               3   R/W       0x8F       0x91   RAM
+.bss                               3   R/W       0x90       0x92   RAM
 .startData                        14     R     0xE08A     0xE097   ROM
 .init                            138     R     0xE000     0xE089   ROM
-.common                            3   R/W       0x92       0x94   RAM
-.stack                            64   R/W       0x95       0xD4   RAM
-.copy                             21     R     0xEB34     0xEB48   ROM
+.common                            3   R/W       0x93       0x95   RAM
+.stack                            64   R/W       0x96       0xD5   RAM
+.copy                             22     R     0xEBAB     0xEBC0   ROM
 
 Summary of section sizes per section type:
-READ_ONLY (R):         B7D (dec:     2941)
-READ_WRITE (R/W):       55 (dec:       85)
+READ_ONLY (R):         BF5 (dec:     3061)
+READ_WRITE (R/W):       56 (dec:       86)
 NO_INIT (N/I):          79 (dec:      121)
 
 *********************************************************************************************
@@ -177,15 +177,15 @@ MODULE:                 -- IHM_c.obj --
      draw_number                               E2FE      39      57       1   .text       
      status_RF                                 E337      FB     251       1   .text       
 - VARIABLES:
-     touche                                    EA77       A      10       1   .rodata     
-     help1                                     EA81      47      71       1   .rodata     
-     help2                                     EAC8      2C      44       1   .rodata     
-     batterie                                  EAF4       B      11       1   .rodata     
-     dx                                        EAFF       5       5       1   .rodata     
-     dy                                        EB04       5       5       1   .rodata     
-     Rotation                                  EB09      14      20       1   .rodata     
-     vitesse                                   EB1D       A      10       1   .rodata     
-     status_rf                                 EB27       D      13       1   .rodata     
+     touche                                    EAEE       A      10       1   .rodata     
+     help1                                     EAF8      47      71       1   .rodata     
+     help2                                     EB3F      2C      44       1   .rodata     
+     batterie                                  EB6B       B      11       1   .rodata     
+     dx                                        EB76       5       5       1   .rodata     
+     dy                                        EB7B       5       5       1   .rodata     
+     Rotation                                  EB80      14      20       1   .rodata     
+     vitesse                                   EB94       A      10       1   .rodata     
+     status_rf                                 EB9E       D      13       1   .rodata     
 MODULE:                 -- bsp_c.obj --
 - PROCEDURES:
      move                                      E432      B5     181      18   .text       
@@ -193,49 +193,52 @@ MODULE:                 -- bsp_c.obj --
 - VARIABLES:
 MODULE:                 -- main_c.obj --
 - PROCEDURES:
-     main                                      E524     129     297       2   .text       
+     main                                      E524     143     323       2   .text       
 - VARIABLES:
-     key                                         80       1       1       4   .data       
-     data_dir                                    81       4       4      13   .data       
-     tx_address                                  85       5       5       1   .data       
-     rx_address                                  8A       5       5       1   .data       
-     repeat                                      8F       1       1       3   .bss        
-     i                                           90       2       2       3   .bss        
+     key                                         80       1       1       3   .data       
+     data_dir                                    81       5       5      16   .data       
+     tx_address                                  86       5       5       1   .data       
+     rx_address                                  8B       5       5       1   .data       
+     repeat                                      90       1       1       3   .bss        
+     i                                           91       2       2       3   .bss        
 MODULE:                 -- nrf24_c.obj --
 - PROCEDURES:
-     nrf24_init                                E64D       D      13       1   .text       
-     nrf24_config                              E65A      5F      95       1   .text       
-     nrf24_rx_address                          E6B9      1A      26       1   .text       
-     nrf24_tx_address                          E6D3      1B      27       1   .text       
-     nrf24_dataReady                           E6EE      21      33       1   .text       
-     nrf24_rxFifoEmpty                         E70F      17      23       1   .text       
-     nrf24_getData                             E726      2A      42       1   .text       
-     nrf24_getStatus                           E750      19      25       1   .text       
-     nrf24_powerUpRx                           E769      28      40       2   .text       
-     spi_transfer                              E791      39      57       9   .text       
-     nrf24_transferSync                        E7CA      41      65       2   .text       
-     nrf24_transmitSync                        E80B      34      52       1   .text       
-     nrf24_configRegister                      E83F      24      36      16   .text       
-     nrf24_readRegister                        E863      27      39       1   .text       
-     nrf24_writeRegister                       E88A      25      37       3   .text       
+     nrf24_init                                E667       D      13       1   .text       
+     nrf24_config                              E674      5F      95       1   .text       
+     nrf24_rx_address                          E6D3      1A      26       1   .text       
+     nrf24_tx_address                          E6ED      1B      27       1   .text       
+     nrf24_dataReady                           E708      21      33       2   .text       
+     nrf24_rxFifoEmpty                         E729      17      23       1   .text       
+     nrf24_getData                             E740      2A      42       1   .text       
+     nrf24_send                                E76A      3C      60       1   .text       
+     nrf24_isSending                           E7A6      13      19       1   .text       
+     nrf24_getStatus                           E7B9      19      25       2   .text       
+     nrf24_powerUpRx                           E7D2      28      40       2   .text       
+     nrf24_powerUpTx                           E7FA       E      14       1   .text       
+     spi_transfer                              E808      39      57      11   .text       
+     nrf24_transferSync                        E841      41      65       2   .text       
+     nrf24_transmitSync                        E882      34      52       2   .text       
+     nrf24_configRegister                      E8B6      24      36      18   .text       
+     nrf24_readRegister                        E8DA      27      39       1   .text       
+     nrf24_writeRegister                       E901      25      37       3   .text       
 - VARIABLES:
-     payload_len                                 92       1       1       3   .common     
-     dummy                                       93       1       1       7   .common     
+     payload_len                                 93       1       1       4   .common     
+     dummy                                       94       1       1       9   .common     
 MODULE:                 -- radioPinFunctions_c.obj --
 - PROCEDURES:
-     nrf24_setupPins                           E8AF      16      22       1   .text       
-     nrf24_ce_digitalWrite                     E8C5       A      10       5   .text       
-     nrf24_csn_digitalWrite                    E8CF       A      10      13   .text       
+     nrf24_setupPins                           E926      16      22       1   .text       
+     nrf24_ce_digitalWrite                     E93C       A      10       7   .text       
+     nrf24_csn_digitalWrite                    E946       A      10      17   .text       
 - VARIABLES:
 MODULE:                 -- start08_c.obj --
 - PROCEDURES:
-     loadByte                                  E8D9       E      14       5   .text       
-     Init                                      E8E7      71     113       1   .text       
-     _Startup                                  E958       9       9       1   .text       
+     loadByte                                  E950       E      14       5   .text       
+     Init                                      E95E      71     113       1   .text       
+     _Startup                                  E9CF       9       9       1   .text       
 - VARIABLES:
      _startupData                              E08A       6       6       4   .startData  
 - LABELS:
-     __SEG_END_SSTACK                            D5       0       0       1               
+     __SEG_END_SSTACK                            D6       0       0       1               
 MODULE:                 -- Cpu_c.obj --
 - PROCEDURES:
      Cpu_Interrupt                             E000       4       4      24   .init       
@@ -244,7 +247,7 @@ MODULE:                 -- Cpu_c.obj --
 - VARIABLES:
      NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
      NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
-     CCR_lock                                    94       1       1       1   .common     
+     CCR_lock                                    95       1       1       1   .common     
 MODULE:                 -- IO_Map_c.obj --
 - PROCEDURES:
 - VARIABLES:
@@ -353,11 +356,11 @@ MODULE:                 -- IO_Map_c.obj --
      _DBGF                                     1816       2       2       0   .abs_section_1816
 MODULE:                 -- SCI_c.obj --
 - PROCEDURES:
-     SCI_Init                                  E961      16      22       1   .text       
+     SCI_Init                                  E9D8      16      22       1   .text       
 - VARIABLES:
 MODULE:                 -- SPI_c.obj --
 - PROCEDURES:
-     SPI_Init                                  E977       C      12       1   .text       
+     SPI_Init                                  E9EE       C      12       1   .text       
 - VARIABLES:
 MODULE:                 -- Vectors_c.obj --
 - PROCEDURES:
@@ -365,12 +368,12 @@ MODULE:                 -- Vectors_c.obj --
      _vect                                     FFCE      32      50       0   .abs_section_ffce
 MODULE:                 -- rtshc08.o (ansiis.lib) --
 - PROCEDURES:
-     _IDIVMOD                                  E983      69     105       1   .text       
-     _SPLITSIGN                                E9EC      1C      28       2   .text       
-     _IDIVS_STAR08                             EA08      1B      27       7   .text       
-     _IMODS_STAR08                             EA23      25      37       7   .text       
-     _ICMP                                     EA48      16      22       2   .text       
-     _Jump_Table_Offset                        EA5E      19      25       1   .text       
+     _IDIVMOD                                  E9FA      69     105       1   .text       
+     _SPLITSIGN                                EA63      1C      28       2   .text       
+     _IDIVS_STAR08                             EA7F      1B      27       7   .text       
+     _IMODS_STAR08                             EA9A      25      37       7   .text       
+     _ICMP                                     EABF      16      22       2   .text       
+     _Jump_Table_Offset                        EAD5      19      25       1   .text       
 - VARIABLES:
 
 *********************************************************************************************
@@ -379,8 +382,8 @@ MODULE STATISTIC
 ---------------------------------------------------------------------------------------------
   IHM_c.obj                                    0    922    189
   bsp_c.obj                                    0    242      0
-  main_c.obj                                  18    297      0
-  nrf24_c.obj                                  2    610      0
+  main_c.obj                                  19    323      0
+  nrf24_c.obj                                  2    703      0
   radioPinFunctions_c.obj                      0     42      0
   start08_c.obj                                0    136      0
   Cpu_c.obj                                    1    138      2
@@ -389,7 +392,7 @@ MODULE STATISTIC
   SPI_c.obj                                    0     12      0
   Vectors_c.obj                                0      0     50
   rtshc08.o (ansiis.lib)                       0    244      0
-  other                                       64     14     21
+  other                                       64     14     22
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
@@ -397,8 +400,9 @@ SECTION USE IN OBJECT-ALLOCATION SECTION
 SECTION: ".text"
   draw_ihm convert draw_number status_RF move clear_screen main nrf24_init 
   nrf24_config nrf24_rx_address nrf24_tx_address nrf24_dataReady 
-  nrf24_rxFifoEmpty nrf24_getData nrf24_getStatus nrf24_powerUpRx spi_transfer 
-  nrf24_transferSync nrf24_transmitSync nrf24_configRegister nrf24_readRegister 
+  nrf24_rxFifoEmpty nrf24_getData nrf24_send nrf24_isSending nrf24_getStatus 
+  nrf24_powerUpRx nrf24_powerUpTx spi_transfer nrf24_transferSync 
+  nrf24_transmitSync nrf24_configRegister nrf24_readRegister 
   nrf24_writeRegister nrf24_setupPins nrf24_ce_digitalWrite 
   nrf24_csn_digitalWrite loadByte Init _Startup SCI_Init SPI_Init _IDIVMOD 
   _SPLITSIGN _IDIVS_STAR08 _IMODS_STAR08 _ICMP _Jump_Table_Offset 
@@ -690,15 +694,15 @@ OBJECT LIST SORTED BY ADDRESS
      _TPM2C1V                                    59       2       2       0   .abs_section_59
      _TPM2C2SC                                   5B       1       1       0   .abs_section_5b
      _TPM2C2V                                    5C       2       2       0   .abs_section_5c
-     key                                         80       1       1       4   .data       
-     data_dir                                    81       4       4      13   .data       
-     tx_address                                  85       5       5       1   .data       
-     rx_address                                  8A       5       5       1   .data       
-     repeat                                      8F       1       1       3   .bss        
-     i                                           90       2       2       3   .bss        
-     payload_len                                 92       1       1       3   .common     
-     dummy                                       93       1       1       7   .common     
-     CCR_lock                                    94       1       1       1   .common     
+     key                                         80       1       1       3   .data       
+     data_dir                                    81       5       5      16   .data       
+     tx_address                                  86       5       5       1   .data       
+     rx_address                                  8B       5       5       1   .data       
+     repeat                                      90       1       1       3   .bss        
+     i                                           91       2       2       3   .bss        
+     payload_len                                 93       1       1       4   .common     
+     dummy                                       94       1       1       9   .common     
+     CCR_lock                                    95       1       1       1   .common     
      _SRS                                      1800       1       1       0   .abs_section_1800
      _SBDFR                                    1801       1       1       0   .abs_section_1801
      _SOPT1                                    1802       1       1       1   .abs_section_1802
@@ -750,45 +754,48 @@ OBJECT LIST SORTED BY ADDRESS
      status_RF                                 E337      FB     251       1   .text       
      move                                      E432      B5     181      18   .text       
      clear_screen                              E4E7      3D      61       1   .text       
-     main                                      E524     129     297       2   .text       
-     nrf24_init                                E64D       D      13       1   .text       
-     nrf24_config                              E65A      5F      95       1   .text       
-     nrf24_rx_address                          E6B9      1A      26       1   .text       
-     nrf24_tx_address                          E6D3      1B      27       1   .text       
-     nrf24_dataReady                           E6EE      21      33       1   .text       
-     nrf24_rxFifoEmpty                         E70F      17      23       1   .text       
-     nrf24_getData                             E726      2A      42       1   .text       
-     nrf24_getStatus                           E750      19      25       1   .text       
-     nrf24_powerUpRx                           E769      28      40       2   .text       
-     spi_transfer                              E791      39      57       9   .text       
-     nrf24_transferSync                        E7CA      41      65       2   .text       
-     nrf24_transmitSync                        E80B      34      52       1   .text       
-     nrf24_configRegister                      E83F      24      36      16   .text       
-     nrf24_readRegister                        E863      27      39       1   .text       
-     nrf24_writeRegister                       E88A      25      37       3   .text       
-     nrf24_setupPins                           E8AF      16      22       1   .text       
-     nrf24_ce_digitalWrite                     E8C5       A      10       5   .text       
-     nrf24_csn_digitalWrite                    E8CF       A      10      13   .text       
-     loadByte                                  E8D9       E      14       5   .text       
-     Init                                      E8E7      71     113       1   .text       
-     _Startup                                  E958       9       9       1   .text       
-     SCI_Init                                  E961      16      22       1   .text       
-     SPI_Init                                  E977       C      12       1   .text       
-     _IDIVMOD                                  E983      69     105       1   .text       
-     _SPLITSIGN                                E9EC      1C      28       2   .text       
-     _IDIVS_STAR08                             EA08      1B      27       7   .text       
-     _IMODS_STAR08                             EA23      25      37       7   .text       
-     _ICMP                                     EA48      16      22       2   .text       
-     _Jump_Table_Offset                        EA5E      19      25       1   .text       
-     touche                                    EA77       A      10       1   .rodata     
-     help1                                     EA81      47      71       1   .rodata     
-     help2                                     EAC8      2C      44       1   .rodata     
-     batterie                                  EAF4       B      11       1   .rodata     
-     dx                                        EAFF       5       5       1   .rodata     
-     dy                                        EB04       5       5       1   .rodata     
-     Rotation                                  EB09      14      20       1   .rodata     
-     vitesse                                   EB1D       A      10       1   .rodata     
-     status_rf                                 EB27       D      13       1   .rodata     
+     main                                      E524     143     323       2   .text       
+     nrf24_init                                E667       D      13       1   .text       
+     nrf24_config                              E674      5F      95       1   .text       
+     nrf24_rx_address                          E6D3      1A      26       1   .text       
+     nrf24_tx_address                          E6ED      1B      27       1   .text       
+     nrf24_dataReady                           E708      21      33       2   .text       
+     nrf24_rxFifoEmpty                         E729      17      23       1   .text       
+     nrf24_getData                             E740      2A      42       1   .text       
+     nrf24_send                                E76A      3C      60       1   .text       
+     nrf24_isSending                           E7A6      13      19       1   .text       
+     nrf24_getStatus                           E7B9      19      25       2   .text       
+     nrf24_powerUpRx                           E7D2      28      40       2   .text       
+     nrf24_powerUpTx                           E7FA       E      14       1   .text       
+     spi_transfer                              E808      39      57      11   .text       
+     nrf24_transferSync                        E841      41      65       2   .text       
+     nrf24_transmitSync                        E882      34      52       2   .text       
+     nrf24_configRegister                      E8B6      24      36      18   .text       
+     nrf24_readRegister                        E8DA      27      39       1   .text       
+     nrf24_writeRegister                       E901      25      37       3   .text       
+     nrf24_setupPins                           E926      16      22       1   .text       
+     nrf24_ce_digitalWrite                     E93C       A      10       7   .text       
+     nrf24_csn_digitalWrite                    E946       A      10      17   .text       
+     loadByte                                  E950       E      14       5   .text       
+     Init                                      E95E      71     113       1   .text       
+     _Startup                                  E9CF       9       9       1   .text       
+     SCI_Init                                  E9D8      16      22       1   .text       
+     SPI_Init                                  E9EE       C      12       1   .text       
+     _IDIVMOD                                  E9FA      69     105       1   .text       
+     _SPLITSIGN                                EA63      1C      28       2   .text       
+     _IDIVS_STAR08                             EA7F      1B      27       7   .text       
+     _IMODS_STAR08                             EA9A      25      37       7   .text       
+     _ICMP                                     EABF      16      22       2   .text       
+     _Jump_Table_Offset                        EAD5      19      25       1   .text       
+     touche                                    EAEE       A      10       1   .rodata     
+     help1                                     EAF8      47      71       1   .rodata     
+     help2                                     EB3F      2C      44       1   .rodata     
+     batterie                                  EB6B       B      11       1   .rodata     
+     dx                                        EB76       5       5       1   .rodata     
+     dy                                        EB7B       5       5       1   .rodata     
+     Rotation                                  EB80      14      20       1   .rodata     
+     vitesse                                   EB94       A      10       1   .rodata     
+     status_rf                                 EB9E       D      13       1   .rodata     
      NVPROT_INIT                               FFBD       1       1       0   .abs_section_ffbd
      NVOPT_INIT                                FFBF       1       1       0   .abs_section_ffbf
      _vect                                     FFCE      32      50       0   .abs_section_ffce
@@ -803,8 +810,7 @@ bsp_c.obj:
   delay input_SCI 
 nrf24_c.obj:
   nrf24_payload_length nrf24_payloadLength nrf24_retransmissionCount 
-  nrf24_send nrf24_isSending nrf24_lastMessageStatus nrf24_powerUpTx 
-  nrf24_powerDown 
+  nrf24_lastMessageStatus nrf24_powerDown 
 rtshc08.o (ansiis.lib):
   _PUSH_ARGS_L _PUSH_ARGS_D _ENTER_UNARY_L _ENTER_UNARY_L64 _ENTER_UNARY_L64_4 
   _ENTER_BINARY_L _ENTER_BINARY_L_RC _ENTER_BINARY_L_LC _ENTER_BINARY_L64 
@@ -833,22 +839,25 @@ rtshc08.o (ansiis.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xEB34 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xEBAB ---- SIZE       4 ---
 Filling bytes inserted
- 000F0080
-------- ROM-ADDRESS: 0xEB38 ---- RAM-ADDRESS: 0x80 ---- SIZE       1 ---
+ 00100080
+------- ROM-ADDRESS: 0xEBAF ---- RAM-ADDRESS: 0x80 ---- SIZE       1 ---
 Name of initialized Object : key
  20
-------- ROM-ADDRESS: 0xEB39 ---- RAM-ADDRESS: 0x81 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xEBB0 ---- RAM-ADDRESS: 0x81 ---- SIZE       4 ---
 Name of initialized Object : data_dir
  7F7F00FF
-------- ROM-ADDRESS: 0xEB3D ---- RAM-ADDRESS: 0x85 ---- SIZE       5 ---
+------- ROM-ADDRESS: 0xEBB4 ---- SIZE       1 ---
+Filling bytes inserted
+ 00
+------- ROM-ADDRESS: 0xEBB5 ---- RAM-ADDRESS: 0x86 ---- SIZE       5 ---
 Name of initialized Object : tx_address
- E7E7E7E7E7
-------- ROM-ADDRESS: 0xEB42 ---- RAM-ADDRESS: 0x8A ---- SIZE       5 ---
+ D7D7D7D7D7
+------- ROM-ADDRESS: 0xEBBA ---- RAM-ADDRESS: 0x8B ---- SIZE       5 ---
 Name of initialized Object : rx_address
  E7E7E7E7E7
-------- ROM-ADDRESS: 0xEB47 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xEBBF ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -869,10 +878,10 @@ move                      USES _SCIS1 _SCID _IDIVS_STAR08 _IMODS_STAR08
 clear_screen              USES _SCIS1 _SCID 
 main                      USES PE_low_level_init nrf24_init nrf24_config 
                                 tx_address nrf24_tx_address rx_address nrf24_rx_address 
-                                clear_screen draw_ihm nrf24_powerUpRx i nrf24_dataReady 
-                                nrf24_getData _IDIVS_STAR08 convert draw_number status_RF 
-                                _SCIS1 _SCID key repeat move _Jump_Table_Offset 
-                                data_dir main 
+                                clear_screen draw_ihm data_dir nrf24_powerUpRx i 
+                                nrf24_dataReady nrf24_getData _IDIVS_STAR08 convert 
+                                draw_number status_RF _SCIS1 _SCID key repeat move 
+                                _Jump_Table_Offset nrf24_send nrf24_isSending main 
 nrf24_init                USES nrf24_setupPins nrf24_ce_digitalWrite 
                                 nrf24_csn_digitalWrite 
 nrf24_config              USES payload_len nrf24_configRegister 
@@ -883,9 +892,14 @@ nrf24_dataReady           USES nrf24_getStatus nrf24_rxFifoEmpty
 nrf24_rxFifoEmpty         USES nrf24_readRegister 
 nrf24_getData             USES nrf24_csn_digitalWrite spi_transfer dummy 
                                 payload_len nrf24_transferSync nrf24_configRegister 
+nrf24_send                USES nrf24_ce_digitalWrite nrf24_powerUpTx 
+                                nrf24_csn_digitalWrite spi_transfer dummy payload_len 
+                                nrf24_transmitSync 
+nrf24_isSending           USES nrf24_getStatus 
 nrf24_getStatus           USES nrf24_csn_digitalWrite spi_transfer 
 nrf24_powerUpRx           USES nrf24_csn_digitalWrite spi_transfer dummy 
                                 nrf24_configRegister nrf24_ce_digitalWrite 
+nrf24_powerUpTx           USES nrf24_configRegister 
 spi_transfer              USES _SPIS _SPID 
 nrf24_transferSync        USES spi_transfer _ICMP 
 nrf24_transmitSync        USES spi_transfer dummy _ICMP 
@@ -1034,7 +1048,25 @@ DEPENDENCY TREE
  |  +- move                 (see above)
  |  |  
  |  +- _Jump_Table_Offset  
- |       
+ |  |    
+ |  +- nrf24_send          
+ |  |  | 
+ |  |  +- nrf24_ce_digitalWrite (see above)
+ |  |  |  
+ |  |  +- nrf24_powerUpTx     
+ |  |  |  | 
+ |  |  |  +- nrf24_configRegister (see above)
+ |  |  |     
+ |  |  +- nrf24_csn_digitalWrite (see above)
+ |  |  |  
+ |  |  +- spi_transfer         (see above)
+ |  |  |  
+ |  |  +- nrf24_transmitSync   (see above)
+ |  |     
+ |  +- nrf24_isSending     
+ |     | 
+ |     +- nrf24_getStatus      (see above)
+ |        
  +- _EntryPoint         
     | 
     +- _Startup            
@@ -1058,5 +1090,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 8
-Total size of all blocks to be downloaded: 2941
+Total size of all blocks to be downloaded: 3061
 

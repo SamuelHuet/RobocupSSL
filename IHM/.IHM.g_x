@@ -25,11 +25,11 @@
       <File Name="Generated_Code/SCI.h" FileDate="2018-06-01, 14:37:41" FileAge="1527856661525" FileType="45637" CompNumb="8" />
       <File Name="Sources/Events.c" FileDate="2018-05-30, 15:47:20" FileAge="1527688040151" FileType="131328" />
       <File Name="Generated_Code/SPI.c" FileDate="2018-05-30, 15:48:38" FileAge="1527688118966" FileType="45637" CompNumb="15" />
-      <File Name="Documentation/IHM_Settings.xml" FileDate="2018-06-01, 14:37:42" FileAge="1527856662565" FileType="3072" />
+      <File Name="Documentation/IHM_SIGNALS.txt" FileDate="2018-06-14, 15:03:28" FileAge="1528981408061" FileType="3072" />
       <File Name="Generated_Code/SCI.c" FileDate="2018-06-01, 14:37:41" FileAge="1527856661537" FileType="45637" CompNumb="8" />
-      <File Name="Documentation/IHM_SIGNALS.txt" FileDate="2018-06-11, 14:51:47" FileAge="1528721507689" FileType="3072" />
+      <File Name="Documentation/IHM_Settings.xml" FileDate="2018-06-01, 14:37:42" FileAge="1527856662565" FileType="3072" />
       <File Name="Generated_Code/Vectors.c" FileDate="2018-06-01, 14:37:42" FileAge="1527856662176" FileType="45637" CompNumb="4" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>47</CodeGenReference>
+  <CodeGenReference>48</CodeGenReference>
 </CodeGenerationInfo>
