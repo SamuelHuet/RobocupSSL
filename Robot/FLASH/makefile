@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 11
+#Progress monitor hint: 13
 first : all
 -include ../makefile.init
 
@@ -91,14 +91,14 @@ endif
 # Tool invocations
 Radio128.abs: $(OBJS) $(USER_OBJS) ../Project_Settings/Linker_Files/ProcessorExpert.prm
 	@echo 'Building target: $@'
-	@echo 'Executing target #12 $@'
+	@echo 'Executing target #14 $@'
 	@echo 'Invoking: S08 Linker'
 	"$(HC08ToolsEnv)/linker" -ArgFile"Radio128.args" -O"Radio128.abs"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 Radio128.abs.s19: $(BBL_SRCS) $(EXECUTABLES)
-	@echo 'Executing target #13 $@'
+	@echo 'Executing target #15 $@'
 	@echo 'Invoking: S08 Burner'
 	"$(HC08ToolsEnv)/burner" -ArgFile"Radio128.abs.args" -f="$<" -env"ABS_FILE=$(strip $(EXECUTABLES_OS_FORMAT))"
 	@echo 'Finished building: $@'

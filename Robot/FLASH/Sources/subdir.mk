@@ -11,6 +11,7 @@ C_SRCS_QUOTED += \
 "../Sources/graph.c" \
 "../Sources/kicker.c" \
 "../Sources/main.c" \
+"../Sources/moteur.c" \
 "../Sources/nrf24.c" \
 "../Sources/radioPinFunctions.c" \
 
@@ -20,6 +21,7 @@ C_SRCS += \
 ../Sources/graph.c \
 ../Sources/kicker.c \
 ../Sources/main.c \
+../Sources/moteur.c \
 ../Sources/nrf24.c \
 ../Sources/radioPinFunctions.c \
 
@@ -29,6 +31,7 @@ OBJS += \
 ./Sources/graph_c.obj \
 ./Sources/kicker_c.obj \
 ./Sources/main_c.obj \
+./Sources/moteur_c.obj \
 ./Sources/nrf24_c.obj \
 ./Sources/radioPinFunctions_c.obj \
 
@@ -38,6 +41,7 @@ OBJS_QUOTED += \
 "./Sources/graph_c.obj" \
 "./Sources/kicker_c.obj" \
 "./Sources/main_c.obj" \
+"./Sources/moteur_c.obj" \
 "./Sources/nrf24_c.obj" \
 "./Sources/radioPinFunctions_c.obj" \
 
@@ -47,6 +51,7 @@ C_DEPS += \
 ./Sources/graph_c.d \
 ./Sources/kicker_c.d \
 ./Sources/main_c.d \
+./Sources/moteur_c.d \
 ./Sources/nrf24_c.d \
 ./Sources/radioPinFunctions_c.d \
 
@@ -56,6 +61,7 @@ C_DEPS_QUOTED += \
 "./Sources/graph_c.d" \
 "./Sources/kicker_c.d" \
 "./Sources/main_c.d" \
+"./Sources/moteur_c.d" \
 "./Sources/nrf24_c.d" \
 "./Sources/radioPinFunctions_c.d" \
 
@@ -65,6 +71,7 @@ OBJS_OS_FORMAT += \
 ./Sources/graph_c.obj \
 ./Sources/kicker_c.obj \
 ./Sources/main_c.obj \
+./Sources/moteur_c.obj \
 ./Sources/nrf24_c.obj \
 ./Sources/radioPinFunctions_c.obj \
 
@@ -115,9 +122,17 @@ Sources/main_c.obj: ../Sources/main.c
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/nrf24_c.obj: ../Sources/nrf24.c
+Sources/moteur_c.obj: ../Sources/moteur.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #6 $<'
+	@echo 'Invoking: HCS08 Compiler'
+	"$(HC08ToolsEnv)/chc08" -ArgFile"Sources/moteur.args" -ObjN="Sources/moteur_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Sources/nrf24_c.obj: ../Sources/nrf24.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #7 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Sources/nrf24.args" -ObjN="Sources/nrf24_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'
@@ -125,7 +140,7 @@ Sources/nrf24_c.obj: ../Sources/nrf24.c
 
 Sources/radioPinFunctions_c.obj: ../Sources/radioPinFunctions.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #7 $<'
+	@echo 'Executing target #8 $<'
 	@echo 'Invoking: HCS08 Compiler'
 	"$(HC08ToolsEnv)/chc08" -ArgFile"Sources/radioPinFunctions.args" -ObjN="Sources/radioPinFunctions_c.obj" "$<" -Lm="$(@:%.obj=%.d)" -LmCfg=xilmou
 	@echo 'Finished building: $<'

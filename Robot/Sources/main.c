@@ -30,6 +30,7 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
+#include "EInt1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -39,6 +40,7 @@
 #include "graph.h"
 #include "Dribleur.h"
 #include "Kicker.h"
+#include "moteur.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
 
@@ -65,6 +67,7 @@ void main(void)
 
 	};
 	init_PWM();
+	init_moteur();
 	init_ADC();
 	Init_Kick();
 	nrf24_init();
@@ -80,10 +83,12 @@ void main(void)
 
 		nrf24_send(data_array);
 		while(nrf24_isSending());
+		
 		On_Dribleur(pwm);
 		Kick_Charge();
 		Kick_ON(&tir);
 		
+		RapportCyclique(0x01);
 
 
 		
