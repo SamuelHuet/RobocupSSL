@@ -41,6 +41,8 @@
 #include "Dribleur.h"
 #include "Kicker.h"
 #include "moteur.h"
+#include "Central.h"
+#include "CapteurOptique.h"
 /* User includes (#include below this line is not maintained by Processor Expert) */
 
 
@@ -54,6 +56,10 @@ void main(void)
 	unsigned char tx_address[5] = {0xE7, 0xE7, 0xE7, 0xE7, 0xE7};
 	unsigned char rx_address[5] = {0xD7, 0xD7, 0xD7, 0xD7, 0xD7};
 	unsigned long i;
+	volatile unsigned char Adresse;
+	volatile signed short Temperature, axeX, axeY, dx, dy, GYROZ;
+	volatile unsigned char resultat;
+	volatile signed char valeur;
 	unsigned char pwm = 1;
 	unsigned char tir=1;
 	/*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
@@ -70,7 +76,9 @@ void main(void)
 	init_moteur();
 	init_ADC();
 	Init_Kick();
+	initACC();
 	nrf24_init();
+	initCapteur();
 	nrf24_config(2, 4);
 	PTEDD_PTEDD5=1;
 	tir = 1;
@@ -113,6 +121,31 @@ void main(void)
 			PTED_PTED5=1;
 		}	*/
 
+<<<<<<< HEAD
+=======
+		/*ADRESSE*/
+		Adresse = getAdress();
+		/*TEMPERATURE*/
+		Temperature = getTemp();
+		/*ACCELEROMETRE X*/
+		axeX = getX();
+		/*ACCELEROMETRE Y*/
+		axeY = getY();
+
+		/*PTJD_PTJD0 = 0;
+		resultat = spi_transfer(0x1a);
+		resultat = spi_transfer(0x00);
+		PTJD_PTJD0 = 1;
+		delay(10);*/
+		if (resultat & 0x80) {
+		 CS=0;
+		 valeur = (signed char) spi_transfer(0x03);
+		 CS=1;
+		 }
+
+		for (i = 0; i < 0x35; ++i) {
+
+>>>>>>> 6056cecadf8dd1f722106dc09f05074fb00c630a
 		}
 		
 	}
