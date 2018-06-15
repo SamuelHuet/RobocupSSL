@@ -74,45 +74,36 @@ void main(void)
 	nrf24_config(2, 4);
 	PTEDD_PTEDD5=1;
 	tir = 1;
-//nrf24_powerUpRx();
+	//nrf24_powerUpRx();
 
 	for(;;){
 
-		data_array[0] = Get_ADC(0);
-		Draw_battery(data_array[0]);
+		data_dir[0] = Get_ADC(0);
+		Draw_battery(data_dir[0]);
 
-		nrf24_send(data_array);
+		nrf24_send(data_dir);
 		while(nrf24_isSending());
-		
+
 		On_Dribleur(pwm);
 		Kick_Charge();
 		Kick_ON(&tir);
-		
+
 		RapportCyclique(0x01);
 
-
-		
-		/*for (i = 0; i < 1000; ++i) {
-
-		}*/
-
-		/*i=0;
-		while((!nrf24_dataReady()) && (i<100)){	//Attente d'une donnée + Timeout
-			i++;					//Récupération de la donnée
+		nrf24_powerUpRx();
+		data_array[3]=0;
+		i=0;
+		while ( (!nrf24_dataReady()) && (i<1000)){	//Attente d'une donnée + Timeout
+			i++;
 		}
-		if(nrf24_dataReady()){
-			nrf24_getData(data_dir);
-		}*/
+		if (nrf24_dataReady()){
+			nrf24_getData(data_array); //Récupération de la donnée
+		}
 
-
-/*		nrf24_powerUpTx();
-		for (i = 0; i < 1000; ++i) {
-
-		} */
-
-
-
-/*	if(data_dir[0] != 0x7F){
+		if(data_array[3] == 0xFF){	//si la checksum est bonne
+			//Traiter les données
+			
+		/*	if(data_dir[0] != 0x7F){		Allume une led.
 			PTED_PTED5=0;
 		}else if(data_dir[1] != 0x7F){
 			PTED_PTED5=0;
@@ -122,11 +113,8 @@ void main(void)
 			PTED_PTED5=1;
 		}	*/
 
-
-
-		for (i = 0; i < 0x35; ++i) {
-
 		}
+		
 	}
 
 	/*** Don't write any code pass this line, or it will be deleted during code generation. ***/
@@ -135,9 +123,9 @@ void main(void)
 	PEX_RTOS_START();                  /* Startup of the selected RTOS. Macro is defined by the RTOS component. */
 #endif
 	/*** End of RTOS startup code.  ***/
-  /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
-  for(;;){}
-  /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
+	/*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
+	for(;;){}
+	/*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/
 
 /* END main */

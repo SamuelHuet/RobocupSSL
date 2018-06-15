@@ -111,7 +111,6 @@ void main(void)
 
 		move(13, 20);
 		putc(key);
-		data_dir[1] = key;//Affichage
 		repeat = 0;
 
 		/*----------------------------------------------------- */
@@ -146,14 +145,9 @@ void main(void)
 		} 
 
 
-		data_dir[0] ++;
 		nrf24_send(data_dir);					//Envois du tableau
 		while(nrf24_isSending());				//Attente de l'envois
-		/*nrf24_powerUpRx();
-
-			for(i=0;i<2000;i++);*/
-		//--------------------------------------------
-
+		
 
 
 
