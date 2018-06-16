@@ -4,7 +4,7 @@ La Robotcup SSL est une compétition de robot omnidirectionnel s'affrontant lors
 
 ## Rapports
 
-Une étude technique de chaque partie du robot est réalisé par un groupe de 4 étudiants. Est disponible également le documentremis au premier jour comportant le cahier des charges. Cecis sont disponibles dans le dossier :
+Une étude technique de chaque partie du robot est réalisé par un groupe de 4 étudiants. Est disponible également le document remis au premier jour comportant le cahier des charges. Cecis sont disponibles dans le dossier :
 ```
 Rapport/
 ```
